@@ -23,3 +23,15 @@ Implementation:
 
     Finally: 
     Clean up the interface to allow players to put in their names, include a button to start/restart the game and add a display element that shows the results upon game end!
+
+
+gameController = {
+    check for player1 and welcome him to the game
+    Initialize the board with no markers, only blank spaces --> DONE
+    check game round 
+    check player turn
+    received request by player to position marker 
+    received request by CPU to position marker
+    check if the value == ' ' --> validate or deny
+    check winning   
+}
