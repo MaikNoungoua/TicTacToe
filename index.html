@@ -3,10 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <title>Tic Tac Toe</title>
 </head>
 <body>
-    
+    <div id="main-container">
+        <div id="top">
+            <div class="dropdown">
+                <button class="dropbtn">Difficulty level</button>
+                <div class="dropdown-content">
+                    <a id="easy">Easy</a>
+                    <a id="medium" href="">Medium</a>
+                    <a id="hard" href="#">Hard</a>
+                </div>
+            </div>
+            <div class="get-info">
+                <div class="get-info-top">
+                    <div class="get-name">
+                        <label for="fname"> Name:</label>
+                        <input type="text" id="fname" name="fname">
+                    </div>
+                    <div class="get-marker">
+                        <div class="marker-title"><p>Select Marker</p></div>
+                        <div class="marker-display">
+                            <button class="marker" id="X">X</button>
+                            <button class="marker" id="O">O</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="get-info-bottom">
+                    <button id="start"> START </button>
+                </div>
+            </div>
+            <div class="display-rd">
+                <p class="round-text">Round: </p>
+                <p class="one">1 </p> 
+                <p class="two">  2 </p>
+                <p class="three">  3</p>
+            </div>
+        </div>
+        <div id="middle">
+            <table>
+                <tr>
+                    <td id="tile1"></td>
+                    <td id="tile2"></td>
+                    <td id="tile3"></td>
+                </tr>
+                <tr>
+                    <td id="tile4"></td>
+                    <td id="tile5"></td>
+                    <td id="tile6"></td>
+                </tr>
+                <tr>
+                    <td id="tile7"></td>
+                    <td id="tile8"></td>
+                    <td id="tile9"></td>
+                </tr>
+            </table>
+        </div>
+        <div id="bottom"></div>
+    </div>
 </body>
 <script src="./script.js"></script>
 </html>
