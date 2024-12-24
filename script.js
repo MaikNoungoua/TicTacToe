@@ -1,167 +1,268 @@
 
-let playFlag = true;
-
-
-let gameBoard = {
-    "board": [0,0,0,0,0,0,0,0,0],
-    }
-
-const sleep = (ms) => {return new Promise(resolve => setTimeout(resolve,ms))}
-
-validator = function playValidation(tile){ //checks if the player is playing on an empty tile
-
-    let index = tile - 1; 
-
-    if (gameBoard.board[index] == 0 ){
-        gameBoard.board[index] = 1
-        return true}
-    else{return false }
+const GameBoard = {
+    "board":[0,0,0,0,0,0,0,0,0]
+   /* "winning_combo1": [GameBoard.board[0],GameBoard.board[1],GameBoard.board[2]],
+    "winning_combo2": [GameBoard.board[3],GameBoard.board[4],GameBoard.board[5]],
+    "winning_combo3": [GameBoard.board[6],GameBoard.board[7],GameBoard.board[8]],
+    "winning_combo4": [GameBoard.board[0],GameBoard.board[4],GameBoard.board[8]],
+    "winning_combo5": [GameBoard.board[2],GameBoard.board[4],GameBoard.board[6]],
+    "winning_combo6": [GameBoard.board[0],GameBoard.board[3],GameBoard.board[6]],
+    "winning_combo7": [GameBoard.board[1],GameBoard.board[4],GameBoard.board[7]],
+    "winning_combo1": [GameBoard.board[2],GameBoard.board[5],GameBoard.board[8]]*/
 }
 
-const checkFlag = () => {if (playFlag == true) 
-    {sleep(3000)     
-    checkFlag;
-    console.log("the flag is checked");} 
-        
-    else{
-        return false
-    }
+
+let Player1 = {
+    "name": 'Player1',
+    "marker" : '1', 
+    "score":0,
+    "num_value": '1'
 };
 
+let Player2 = {
+    "name": 'Player2',
+    "marker": '2',
+    "score": 0,
+    "num_value": '2'
+};
 
-function easyGame(arg1, arg2){ //creation a throtlle function and multi-thread to listen hasPlayed flag.
-
-
-    
-    for (let i = 0; i < 3; i++ ){
-
-        for (let j = 0; j < 9; j++){
-
-            cpm = Math.floor(Math.random() * (8 - 1 + 1)) + 1; //cmp => computerRequestedMove
-            mapping = cpm+1;
-
-            if (validator(cpm) == true){
-                document.getElementById(`tile${mapping}`).innerHTML = `${arg2.cpuMarker}`;
-                
-            }
-            else{
-                console.log(cpm);}
-            }
-        checkFlag;
-
+const assignXMarkerPlayer1 = () =>{
+    Player1.marker = "X";   
 }
+const assignOMarkerPlayer1 = () =>{
+    Player1.marker = "O";   
 }
 
-function mediumGame(arg1, arg2){
-   console.log("this medium game should not be looged into the console"); 
+const assignXMarkerPlayer2 = () =>{
+    Player2.marker = "X";   
+}
+const assignOMarkerPlayer2 = () =>{
+    Player2.marker = "O";   
 }
 
-function hardGame(arg1, arg2){
-    console.log("this hard game should not be looged into the console"); 
-}
+const players = [Player1,Player2];
 
-//Factory for player creation 
-function Player(name, marker, ){
-    this.name = name; 
-    this.marker = marker;
-    this.score = 0;
+let activePlayer = players[0];
 
-}
-
-
-//Factory for CPU creation 
-function CPU(playerMarker){
-    this.name = 'CPU';
-    this.playerMarker = playerMarker;
-    if(this.playerMarker == 'X'){
-        this.cpuMarker = 'O';
+const switchPlayerTurn = () => {
+    //activePlayer = activePlayer === players[0] ? players[0] : players[1];    
+    if (activePlayer == players[0]){
+        activePlayer = players[1]
     }
-    else if(this.playerMarker == 'O'){
-        this.cpuMarker = 'X';
-    }; 
-    this.score = 0;
+    else{
+        activePlayer = players[0];
+    }
+}
+
+const playValidation = (index) => {
+    if (GameBoard.board[index] == 0 ){
+        return true
+    }
+    else{
+        alert("Invalid moove");
+    }
+}
+
+const checkWinner = () => {
+    if(GameBoard.board[0]+GameBoard.board[1]+GameBoard.board[2] == '111' || 
+       GameBoard.board[3]+GameBoard.board[4]+GameBoard.board[5] == '111' || 
+       GameBoard.board[6]+GameBoard.board[7]+GameBoard.board[8] == '111' || 
+       GameBoard.board[0]+GameBoard.board[3]+GameBoard.board[6] == '111' ||
+       GameBoard.board[1]+GameBoard.board[4]+GameBoard.board[7] == '111' ||
+       GameBoard.board[2]+GameBoard.board[5]+GameBoard.board[8] == '111' || 
+       GameBoard.board[0]+GameBoard.board[4]+GameBoard.board[8] == '111' ||
+       GameBoard.board[2]+GameBoard.board[4]+GameBoard.board[6] == '111')
+    {
+        return "Player 1"
+    }
+    if(GameBoard.board[0]+GameBoard.board[1]+GameBoard.board[2] == '222'
+        || GameBoard.board[3]+GameBoard.board[4]+GameBoard.board[5] == '222'
+        || GameBoard.board[6]+GameBoard.board[7]+GameBoard.board[8] == '222'
+        || GameBoard.board[0]+GameBoard.board[3]+GameBoard.board[6] == '222'
+        || GameBoard.board[1]+GameBoard.board[4]+GameBoard.board[7] == '222'
+        || GameBoard.board[2]+GameBoard.board[5]+GameBoard.board[8] == '222'
+        || GameBoard.board[0]+GameBoard.board[4]+GameBoard.board[8] == '222'
+        || GameBoard.board[2]+GameBoard.board[4]+GameBoard.board[6] == '222'
+    ){
+        return "Player 2"
+    }
+    else{}
+    
+
 }
 
 
-function gameLogic(arg){
-    computerResquestedMove = Math.floor(Math.random() * (9 - 1 + 1)) + 1;
-    console.log(computerResquestedMove);
-}
 
 
-let difficultyLevel = document.querySelector("#main-container")
 
-difficultyLevel.addEventListener('click', (event) => {
+let clickHandler = document.querySelector("body")
+
+clickHandler.addEventListener('click', (event) => {
+    let index = 0;
     let target = event.target;
     let rounds = [];
-    //let gameDifficuly = 0;
+    
 
     switch(target.id){
-        case 'easy':
-            gameDifficulty = 'easy';
-            break;
-        case 'medium':
-            gameDifficulty = 'medium';
-            break;
-        case 'hard':
-            gameDifficulty = 'hard';
-            break;
-        case 'tile1':
+
+        case 'square0':
+            index = target.id.slice(-1);
+            if (playValidation(index) == true) {
+                GameBoard.board[0] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
             
-            valid = validator(target.id);
-            /*if (valid == true) {
-                document.getElementById('tile1').innerHTML = "X";
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
             }
-            else{
-                alert("This is where we will need a timeout function waiting the player / computer to play again");
-            }*/
-            flag = false;
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
+            
             break;
-        case 'tile2':
-            document.getElementById('tile2').innerHTML = "X";
+        case 'square1':
+
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break;
-        case 'tile3':
-            document.getElementById('tile3').innerHTML = "O";
+        case 'square2':
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break;
-        case 'tile4':
-            document.getElementById('tile4').innerHTML = "O";
+        case 'square3':
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break;
-        case 'tile5':
-            document.getElementById('tile5').innerHTML = "X";
+        case 'square4':
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break;
-        case 'tile6':
-            document.getElementById('tile6').innerHTML = "O";
+        case 'square5':
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break;
-        case 'tile7':
-            document.getElementById('tile7').innerHTML = "O";
+        case 'square6':
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break;
-        case 'tile8':
-            document.getElementById('tile8').innerHTML = "X";
-            break;
-        case 'tile9':
-            document.getElementById('tile9').innerHTML = "X";
+        case 'square7':
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break; 
-        case 'X':
-            playerMarker =document.getElementById('X').innerHTML;
+        case 'square8':
+            index = target.id.slice(-1);
+            console.log(index);
+            if (playValidation(index) == true) {
+                GameBoard.board[index] = activePlayer.num_value;
+                document.getElementById(target.id).innerHTML = activePlayer.marker;
+                switchPlayerTurn();
+            };
+            if (checkWinner() == "Player 1"){
+                alert("Player 1 wins");
+            }
+            else if (checkWinner() == "Player 2"){
+                alert("Player 1 wins");
+            }
+            else {}
             break;
-        case 'O':
-            playerMarker = document.getElementById('O').innerHTML;
+        case 'x-pl-1':
+            assignXMarkerPlayer1();
             break;
-        case 'start':
-            let playerName = document.getElementById('fname').value;
-            var myPlayer = new Player(playerName, playerMarker) 
-            var myCpu = new CPU(playerMarker); 
-            alert(`${gameDifficulty}`)
-            
-            if (gameDifficulty === 'easy'){
-                easyGame(myPlayer, myCpu);
-            }
-            else if (gameDifficulty === 'medium'){
-                mediumGame(myPlayer, myCpu);
-            }
-            else if (gameDifficulty === 'hard'){
-                hardGame(myPlayer, myCpu);
-            }
+        case 'o-pl-1':
+            assignOMarkerPlayer1();
+            break;
+        case 'x-pl-2':
+            assignXMarkerPlayer2();
+            break;
+        case 'o-pl-2':
+            assignOMarkerPlayer2();
+            break;
     }
 });
 

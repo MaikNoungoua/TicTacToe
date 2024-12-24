@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Montserrat", sans-serif;
+}
+
+body{
+    height: 100vh;
+}
+
+#container{
+    display: flex;
+    flex-direction: row;
+}
+
+.explanations{
+    padding: 160px;
+    width: 50%;
+}
+
+.selection{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+.winning-combo{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    
+}
+
+.images{
+    height: 120px;
+    width: 120px;
+}
+
+.mode_selection{
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+.mode_selection:hover{
+    color: rgb(251, 161, 51);
+}
+
+a{
+    color: black;
+    text-decoration: none;
+
+}

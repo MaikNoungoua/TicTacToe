@@ -87,3 +87,5 @@ Good morning Team,
 I am doing currently working on the TIC TAC TOE project. I have the front-end ready and I believe to be experiencing issue with the logic I am using in the backend. 
 
 I'm implementing the logic that the computer will use to play against actual players. 
+
+https://discord.com/channels/505093832157691914/505093832157691916/1316023352426762240

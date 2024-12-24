@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIC-TAC-TOE Challenge</title>
+    <link rel="stylesheet" href="game-area-styling.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+</head>
+<body>
+    <div>
+        <div class="left-panel">
+            
+        </div>
+        <div class="game-area">
+            <div class="marker-selection">
+                <div class="player" id="player1">Player 1
+                    <br><br>
+                    <div class="marker-presentation"> 
+                        <button class="marker-btn" id="x-pl-1">X</button>
+                        <button id="o-pl-1">O</button>
+                    </div>
+                </div>
+                <div class="player" id="player2">Player 2 
+                    <br><br>
+                    <div class="marker-presentation"> 
+                        <div class="marker-presentation"> </div>
+                            <button id="x-pl-2">X</button>
+                            <button id="o-pl-2">O</button>
+                        </div>
+                </div>
+            </div>
+            <br><br>
+            
+            <div id="board">
+                <div class="square" id="square0"></div>
+                <div class="square" id="square1"></div>
+                <div class="square" id="square2"></div>
+                <div class="square" id="square3"></div>
+                <div class="square" id="square4"></div>
+                <div class="square" id="square5"></div>
+                <div class="square" id="square6"></div>
+                <div class="square" id="square7"></div>
+                <div class="square" id="square8"></div>
+            </div>  
+            <div id="endGame">
+                <input type="button" value="Restart" id="restartButton" onclick="restartButton()"/>
+            </div>
+        </div>
+    </div>
+    
+</body>
+<script src="./script.js"></script>
+</html>

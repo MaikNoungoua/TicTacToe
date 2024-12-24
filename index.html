@@ -4,66 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <div id="main-container">
-        <div id="top">
-            <div class="dropdown">
-                <button class="dropbtn">Difficulty level</button>
-                <div class="dropdown-content">
-                    <a id="easy">Easy</a>
-                    <a id="medium" href="">Medium</a>
-                    <a id="hard" href="#">Hard</a>
-                </div>
+    
+    <div class="content">
+        <div class="left"></div>
+        <div class="center">
+            <p class="header">TIC TAC TOE</p>
+            <br><br><br><br>
+            <div class="explicative-text">
+                <p> <strong>Tic-Tac-Toe </strong> is an ancient game that billions of people have played over the course of history. 
+                    While some experts believe the game dates back to the ancient Egyptians, 
+                    others believe it evolved from an ancient Roman game called Terni Lapilli.
+                </p>
+                <br><br>
+                <p>The modern game we know as tic-tac-toe is played on a nine-square grid 
+                    created by drawing lines to create 
+                    three horizontal rows and three vertical columns. With X going first, 
+                    players alternate marking the squares with Xs and Os, 
+                    trying to achieve three marks in a row either horizontally, vertically, or diagonally.
+                </p>
+                <br><br>
+                <p>
+                    Tic-tac-toe is interesting to mathematicians, 
+                    because its small grid and simple game play can be used to teach simple mathematical principles, 
+                    such as probability. 
+                    For example, did you realize that there are <strong>362,800 unique ways to place Xs and Os into the grid?</strong>
+                </p>
+                <br><br>
+                <p>
+                    Of those combinations, <strong>255,168</strong> of them are possible winning combinations. 
+                    However, if you eliminate all the symmetrical combinations, 
+                    there are only 138 unique winning combinations. 
+                    With this few winning combinations, tic-tac-toe is a relatively easy game to play, 
+                    making it popular with children. 
+                    Most players quickly learn that two good tic-tac-toe players will settle into playing to a draw repeatedly.
+                </p>
+                
             </div>
-            <div class="get-info">
-                <div class="get-info-top">
-                    <div class="get-name">
-                        <label for="fname"> Name:</label>
-                        <input type="text" id="fname" name="fname">
-                    </div>
-                    <div class="get-marker">
-                        <div class="marker-title"><p>Select Marker</p></div>
-                        <div class="marker-display">
-                            <button class="marker" id="X">X</button>
-                            <button class="marker" id="O">O</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="get-info-bottom">
-                    <button id="start"> START </button>
-                </div>
-            </div>
-            <div class="display-rd">
-                <p class="round-text">Round: </p>
-                <p class="one">1 </p> 
-                <p class="two">  2 </p>
-                <p class="three">  3</p>
-            </div>
+            <br><br><br><br>
+            <a href="./game-mode-selection.html">Try it out</a>
         </div>
-        <div id="middle">
-            <table>
-                <tr>
-                    <td id="tile1"></td>
-                    <td id="tile2"></td>
-                    <td id="tile3"></td>
-                </tr>
-                <tr>
-                    <td id="tile4"></td>
-                    <td id="tile5"></td>
-                    <td id="tile6"></td>
-                </tr>
-                <tr>
-                    <td id="tile7"></td>
-                    <td id="tile8"></td>
-                    <td id="tile9"></td>
-                </tr>
-            </table>
-        </div>
-        <div id="bottom"></div>
+       
     </div>
+    <div class="copyrights"></div>
+    
 </body>
-<script src="./script.js"></script>
 </html>
